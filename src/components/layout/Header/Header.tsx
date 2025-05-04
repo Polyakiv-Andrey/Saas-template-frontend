@@ -8,13 +8,16 @@ import { PasswordResetResetModal } from '../../features/PasswordResetResetModal/
 import { authService } from '../../../api/auth';
 import { toast } from 'react-toastify';
 import './Header.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../store';
+import { logout, login } from '../../../store/authSlice';
 
 export const Header: React.FC = () => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(authService.isAuthenticated());
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
 
-  // Password reset state
   const [resetStep, setResetStep] = useState<0 | 1 | 2 | null>(null);
   const [resetEmail, setResetEmail] = useState('');
   const [resetCode, setResetCode] = useState('');
@@ -33,13 +36,12 @@ export const Header: React.FC = () => {
   const handleLogout = async () => {
     try {
       await authService.logout();
-      setIsAuthenticated(false);
+      dispatch(logout());
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
 
-  // Forgot password flow
   const handleForgotPassword = () => {
     setIsLoginModalOpen(false);
     setResetStep(0);
@@ -54,31 +56,25 @@ export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header__logo">Your Logo</div>
-      <div className="header__button-group">
+      <div className="header__actions">
         {isAuthenticated ? (
-          <Button variant="secondary" onClick={handleLogout}>
-            Logout
-          </Button>
+          <Button className="header__button" onClick={handleLogout}>Logout</Button>
         ) : (
           <>
-            <Button variant="secondary" onClick={handleLogin}>
-              Login
-            </Button>
-            <Button variant="primary" onClick={handleRegister}>
-              Register
-            </Button>
+            <Button className="header__button" onClick={handleLogin}>Login</Button>
+            <Button className="header__button header__button--primary" onClick={handleRegister}>Register</Button>
           </>
         )}
       </div>
       <RegisterModal
         isOpen={isRegisterModalOpen}
         onClose={() => setIsRegisterModalOpen(false)}
-        onAuthenticated={() => setIsAuthenticated(true)}
+        onAuthenticated={() => dispatch(login())}
       />
       <LoginModal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
-        onAuthenticated={() => setIsAuthenticated(true)}
+        onAuthenticated={() => dispatch(login())}
         onForgotPassword={handleForgotPassword}
       />
       <PasswordResetRequestModal

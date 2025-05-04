@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Input } from '../../ui/Input/Input';
 import { Button } from '../../ui/Button/Button';
+import { GoogleButton } from '../../ui/GoogleButton/GoogleButton';
 import { authService } from '../../../api/auth';
+import { api } from '../../../api/config';
 import './LoginModal.scss';
 
 interface LoginModalProps {
@@ -21,6 +23,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -62,6 +65,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     }
   };
 
+  const handleGoogleLogin = () => {
+    setIsGoogleLoading(true);
+    window.location.href = `${api.defaults.baseURL}/auth/google/login/`;
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -92,6 +100,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           <Button type="submit" variant="primary" disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'Login'}
           </Button>
+          <GoogleButton 
+            onClick={handleGoogleLogin}
+            disabled={isGoogleLoading}
+          />
           <div style={{ textAlign: 'center', marginTop: 8 }}>
             <button
               type="button"

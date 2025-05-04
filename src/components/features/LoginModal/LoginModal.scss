@@ -59,4 +59,59 @@
   font-size: 0.875rem;
   text-align: center;
   margin-top: 0.5rem;
+}
+
+.modal__divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  color: #6b7280;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  span {
+    padding: 0 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+.modal__link {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.875rem;
+  padding: 0;
+  margin-top: 0.5rem;
+
+  &:hover {
+    color: #2563eb;
+  }
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}
+
+.google-icon {
+  width: 18px;
+  height: 18px;
 } 

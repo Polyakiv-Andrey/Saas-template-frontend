@@ -63,7 +63,11 @@ export const authService = {
 
   logout: async (): Promise<LogoutResponse> => {
     const refreshToken = localStorage.getItem('refreshToken');
-    if (!refreshToken) throw new Error('No refresh token');
+    if (!refreshToken) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      return Promise.resolve({ message: 'No refresh token, local logout only' });
+    }
 
     const response = await api.post<LogoutResponse>('/auth/logout/', {
       refresh: refreshToken,
@@ -76,5 +80,12 @@ export const authService = {
 
   isAuthenticated: (): boolean => {
     return !!localStorage.getItem('accessToken');
+  },
+
+  googleAuth: async (code: string): Promise<{ refresh: string; access: string }> => {
+    const response = await api.post<{ refresh: string; access: string }>('/auth/google/', { code });
+    localStorage.setItem('accessToken', response.data.access);
+    localStorage.setItem('refreshToken', response.data.refresh);
+    return response.data;
   },
 }; 
