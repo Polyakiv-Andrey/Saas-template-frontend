@@ -37,6 +37,7 @@ export const Header: React.FC = () => {
     try {
       await authService.logout();
       dispatch(logout());
+      window.location.href = '/'
     } catch (error) {
       console.error('Logout failed:', error);
     }

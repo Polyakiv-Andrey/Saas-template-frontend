@@ -26,15 +26,15 @@ interface LogoutResponse {
 export const authService = {
   register: async (data: RegisterData): Promise<AuthResponse> => {
     const response = await api.post<AuthResponse>('/auth/register/', data);
-    localStorage.setItem('accessToken', response.data.tokens.access);
-    localStorage.setItem('refreshToken', response.data.tokens.refresh);
+    localStorage.setItem('access_token', response.data.tokens.access);
+    localStorage.setItem('refresh_token', response.data.tokens.refresh);
     return response.data;
   },
 
   login: async (data: LoginData): Promise<{ refresh: string; access: string }> => {
     const response = await api.post<{ refresh: string; access: string }>('/auth/login/', data);
-    localStorage.setItem('accessToken', response.data.access);
-    localStorage.setItem('refreshToken', response.data.refresh);
+    localStorage.setItem('access_token', response.data.access);
+    localStorage.setItem('refresh_token', response.data.refresh);
     return response.data;
   },
 
@@ -53,39 +53,39 @@ export const authService = {
     return response.data;
   },
 
-  refreshToken: async (refreshToken: string): Promise<{ access: string }> => {
+  refresh_token: async (refresh_token: string): Promise<{ access: string }> => {
     const response = await api.post<{ access: string }>('/auth/token/refresh/', {
-      refresh: refreshToken,
+      refresh: refresh_token,
     });
-    localStorage.setItem('accessToken', response.data.access);
+    localStorage.setItem('access_token', response.data.access);
     return response.data;
   },
 
   logout: async (): Promise<LogoutResponse> => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (!refreshToken) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
+    const refresh_token = localStorage.getItem('refresh_token');
+    if (!refresh_token) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
       return Promise.resolve({ message: 'No refresh token, local logout only' });
     }
 
     const response = await api.post<LogoutResponse>('/auth/logout/', {
-      refresh: refreshToken,
+      refresh: refresh_token,
     });
 
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
     return response.data;
   },
 
   isAuthenticated: (): boolean => {
-    return !!localStorage.getItem('accessToken');
+    return !!localStorage.getItem('access_token');
   },
 
   googleAuth: async (code: string): Promise<{ refresh: string; access: string }> => {
     const response = await api.post<{ refresh: string; access: string }>('/auth/google/', { code });
-    localStorage.setItem('accessToken', response.data.access);
-    localStorage.setItem('refreshToken', response.data.refresh);
+    localStorage.setItem('access_token', response.data.access);
+    localStorage.setItem('refresh_token', response.data.refresh);
     return response.data;
   },
 }; 
