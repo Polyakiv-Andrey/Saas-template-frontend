@@ -5,7 +5,8 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import { subscriptionService } from '../../../api/subscription';
 import { AxiosError } from 'axios';
 
-const stripePromise = loadStripe('pk_test_51PTKyZKeFoXYlmxImRFAcbVKwzlvqvGLRBymmh79dDa2TvCe68OOYIHz2zM99cAoHWHqN1RF1rE0VMlah3cjqeEh00w7BvhcBw');
+const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
+const stripePromise = loadStripe(stripeKey)
 
 interface PaymentMethodModalProps {
   isOpen: boolean;
