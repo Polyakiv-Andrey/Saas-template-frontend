@@ -13,10 +13,7 @@ interface Plan {
   price: string;
   currency: string;
   interval: string;
-  features: {
-    feature_1: string;
-    feature_2: string;
-  };
+  features: { [key: string]: string };
   is_active: boolean;
 }
 interface CurrentSubscription {
@@ -71,6 +68,7 @@ export const SubscriptionPlans: React.FC = () => {
     }
   }, [isAuthenticated, isPaymentModalOpen])
 
+
   const handleSubscribe = (plan: Plan) => {
     setSelectedPlan(plan);
     if (!isAuthenticated) {
@@ -99,8 +97,11 @@ export const SubscriptionPlans: React.FC = () => {
               {plan.price} {plan.currency}/{plan.interval}
             </div>
             <ul className="subscription-plans__features">
-              <li>{plan.features.feature_1}</li>
-              <li>{plan.features.feature_2}</li>
+            {Object.entries(plan.features).map(([key, feature], index) => (
+              <li key={index}>
+                {feature}
+              </li>
+            ))}
             </ul>
             {currentSubscription?.plan.id !== plan.id ?
               <Button className="subscription-plans__button" onClick={() => handleSubscribe(plan)}>Subscribe</Button> :
