@@ -1,0 +1,161 @@
+.current-subscription {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin: 24px 0;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  &__status {
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+
+    &.status--active {
+      background-color: #e6f4ea;
+      color: #1e7e34;
+    }
+
+    &.status--canceled {
+      background-color: #fbe9e7;
+      color: #d32f2f;
+    }
+
+    &.status--past-due {
+      background-color: #fff3e0;
+      color: #f57c00;
+    }
+
+    &.status--default {
+      background-color: #f5f5f5;
+      color: #616161;
+    }
+  }
+
+  &__plan {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__plan-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+  }
+
+  &__plan-price {
+    font-size: 18px;
+    color: #2d72d9;
+    font-weight: 500;
+  }
+
+  &__details {
+    margin-bottom: 24px;
+  }
+
+  &__detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__label {
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  &__value {
+    color: #1a1a1a;
+    font-weight: 400;
+  }
+
+  &__features {
+    margin-bottom: 24px;
+  }
+
+  &__features-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+  }
+
+  &__features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    color: #495057;
+
+    &:before {
+      content: '✓';
+      color: #2d72d9;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__button {
+    flex: 1;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--update {
+      background-color: #2d72d9;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #2468c5;
+      }
+    }
+
+    &--cancel {
+      background-color: transparent;
+      color: #dc3545;
+      border: 1px solid #dc3545;
+
+      &:hover {
+        background-color: #dc3545;
+        color: white;
+      }
+    }
+  }
+} 

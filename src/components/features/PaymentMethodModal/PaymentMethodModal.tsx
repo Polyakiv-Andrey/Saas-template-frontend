@@ -4,6 +4,9 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { subscriptionService } from '../../../api/subscription';
 import { AxiosError } from 'axios';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../store';
+import { fetchCurrentSubscription } from '../../../store/slices/subscriptionSlice';
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
 const stripePromise = loadStripe(stripeKey)
@@ -25,6 +28,7 @@ const StripeForm: React.FC<{
   planPrice: number;
 }> = ({ onClose, onPaymentSuccess, planId, planName, planPrice }) => {
   const stripe = useStripe();
+  const dispatch = useDispatch<AppDispatch>();
   const elements = useElements();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -59,6 +63,7 @@ const StripeForm: React.FC<{
 
       if (response.status === 'active') {
         onPaymentSuccess?.();
+        dispatch(fetchCurrentSubscription());
         onClose();
       } else {
         setError('Payment failed');
