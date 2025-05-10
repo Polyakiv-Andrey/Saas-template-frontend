@@ -16,26 +16,16 @@ interface Plan {
   features: { [key: string]: string };
   is_active: boolean;
 }
-interface CurrentSubscription {
-  cancel_at_period_end: boolean;
-  created_at: string; 
-  current_period_end: string; 
-  current_period_start: string; 
-  id: number;
-  plan: Plan;
-  status: string; 
-  stripe_subscription_id: string;
-}
 
 export const SubscriptionPlans: React.FC = () => {
   const [plans, setPlans] = useState<Plan[]>([]);
-  const [currentSubscription, setCurrentSubscription] = useState<null | CurrentSubscription>(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const { currentSubscription } = useSelector((state: RootState) => state.subscription);
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -51,23 +41,6 @@ export const SubscriptionPlans: React.FC = () => {
 
     fetchPlans();
   }, []);
-
-  useEffect(() => {
-    const getCurrentSubscription = async () => {
-      try {
-        const data = await subscriptionService.getCurrentSubscription()
-        setCurrentSubscription(data)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred') 
-      } finally {
-        setLoading(false);
-      }
-    }
-    if (isAuthenticated) {
-      getCurrentSubscription()
-    }
-  }, [isAuthenticated, isPaymentModalOpen])
-
 
   const handleSubscribe = (plan: Plan) => {
     setSelectedPlan(plan);
@@ -97,11 +70,11 @@ export const SubscriptionPlans: React.FC = () => {
               {plan.price} {plan.currency}/{plan.interval}
             </div>
             <ul className="subscription-plans__features">
-            {Object.entries(plan.features).map(([key, feature], index) => (
-              <li key={index}>
-                {feature}
-              </li>
-            ))}
+              {Object.entries(plan.features).map(([key, feature], index) => (
+                <li key={index}>
+                  {feature}
+                </li>
+              ))}
             </ul>
             {currentSubscription && currentSubscription.plan ? (
               currentSubscription.plan.id !== plan.id ? (

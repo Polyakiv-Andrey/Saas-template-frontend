@@ -47,5 +47,8 @@ export const subscriptionService = {
     });
     return data;
   },
+  cancelSubscription: async (subscriptionId: number): Promise<void> => {
+    await api.delete(`/subscription/subscription/`);
+  },
 }; 
 

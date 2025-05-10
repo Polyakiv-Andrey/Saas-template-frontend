@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import './Header.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../store';
-import { logout, login } from '../../../store/authSlice';
+import { logout, login } from '../../../store/slices/authSlice';
 
 export const Header: React.FC = () => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);

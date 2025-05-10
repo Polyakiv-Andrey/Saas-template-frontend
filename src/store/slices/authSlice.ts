@@ -16,7 +16,6 @@ const authSlice = createSlice({
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
     },
-    // Можно добавить другие экшены, если потребуется
   },
 });
 
