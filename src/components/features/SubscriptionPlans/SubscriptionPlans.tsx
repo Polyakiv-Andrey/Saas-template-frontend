@@ -103,10 +103,19 @@ export const SubscriptionPlans: React.FC = () => {
               </li>
             ))}
             </ul>
-            {currentSubscription?.plan.id !== plan.id ?
-              <Button className="subscription-plans__button" onClick={() => handleSubscribe(plan)}>Subscribe</Button> :
-              <div className="subscription-plans__subscribed">Subscribed</div>
-            }
+            {currentSubscription && currentSubscription.plan ? (
+              currentSubscription.plan.id !== plan.id ? (
+                <Button className="subscription-plans__button" onClick={() => handleSubscribe(plan)}>
+                  Subscribe
+                </Button>
+              ) : (
+                <div className="subscription-plans__subscribed">Subscribed</div>
+              )
+            ) : (
+              <Button className="subscription-plans__button" onClick={() => handleSubscribe(plan)}>
+                Subscribe
+              </Button>
+            )}
           </div>
         ))}
       </div>
