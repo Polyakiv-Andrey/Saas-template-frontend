@@ -3,8 +3,20 @@ import { Home } from './pages/Home/Home';
 import { GoogleCallback } from './components/features/GoogleCallback/GoogleCallback';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store';
+import { useEffect } from 'react';
+import { fetchCurrentSubscription } from './store/slices/subscriptionSlice';
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchCurrentSubscription());
+    }
+  }, [dispatch, isAuthenticated]);
   return (
     <Router>
       <Routes>

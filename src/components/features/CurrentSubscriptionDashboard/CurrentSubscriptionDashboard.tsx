@@ -86,7 +86,6 @@ export const CurrentSubscriptionDashboard: React.FC = () => {
         <ul className="current-subscription__features-list">
           {Object.entries(currentSubscription.plan.features).map(([key, feature], index) => (
             <li key={index} className="current-subscription__feature">
-              <span className="current-subscription__feature-dot" />
               {feature}
             </li>
           ))}
