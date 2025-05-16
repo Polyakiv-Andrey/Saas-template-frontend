@@ -8,10 +8,18 @@ export interface SupportTicketPayload {
 
 export interface SupportTicketResponse {
   id: number;
-  subject: string;
-  message: string;
-  created_at: string;
+  title: string;
+  description: string;
+  image_url?: string | null;
   status: string;
+  created_at: string;
+  updated_at: string;
+  resolved_at?: string | null;
+  reported_by_email: string
+}
+
+export interface SupportTicketListParams {
+  interacted?: boolean; 
 }
 
 export const supportApi = {
@@ -27,6 +35,12 @@ export const supportApi = {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
+    });
+    return data;
+  },
+  getTickets: async (params?: SupportTicketListParams): Promise<SupportTicketResponse[]> => {
+    const { data } = await api.get<SupportTicketResponse[]>('/support/tickets/', {
+      params,
     });
     return data;
   },

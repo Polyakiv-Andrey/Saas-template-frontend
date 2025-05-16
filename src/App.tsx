@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store';
 import { useEffect } from 'react';
 import { fetchCurrentSubscription } from './store/slices/subscriptionSlice';
+import { Support } from './pages/Support';
+import { Layout } from './components/layout/Layout';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,8 +22,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth/google/callback" element={<GoogleCallback />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth/google/callback" element={<GoogleCallback />} />
+          <Route path="/support" element={<Support />} />
+        </Route>
       </Routes>
       <ToastContainer position="top-center" autoClose={3000} />
     </Router>

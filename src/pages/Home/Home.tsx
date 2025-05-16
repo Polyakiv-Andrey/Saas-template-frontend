@@ -1,5 +1,4 @@
 import React from 'react';
-import { Header } from '../../components/layout/Header/Header';
 import { SubscriptionPlans } from '../../components/features/SubscriptionPlans/SubscriptionPlans';
 import { CurrentSubscriptionDashboard } from '../../components/features/CurrentSubscriptionDashboard/CurrentSubscriptionDashboard';
 import { SupportForm } from '../../components/features/SupportForm';
@@ -14,7 +13,6 @@ export const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <Header />
       <main className="home__main">
         <SubscriptionPlans />
         {isAuthenticated && currentSubscription && currentSubscription.cancel_at_period_end === false && <CurrentSubscriptionDashboard />}
