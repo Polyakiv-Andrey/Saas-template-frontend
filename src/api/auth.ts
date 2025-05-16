@@ -5,6 +5,13 @@ interface RegisterData {
   password: string;
   password2: string;
 }
+interface CurrentUser {
+  id: number;
+  email: string;
+  is_active: boolean;
+  is_staff: boolean;
+  is_superuser: boolean;
+}
 
 interface LoginData {
   email: string;
@@ -87,5 +94,9 @@ export const authService = {
     localStorage.setItem('access_token', response.data.access);
     localStorage.setItem('refresh_token', response.data.refresh);
     return response.data;
+  },
+  getCurrentUser: async (): Promise<CurrentUser> => {
+    const { data } = await api.get<CurrentUser>('/auth/users/me/');
+    return data;
   },
 }; 

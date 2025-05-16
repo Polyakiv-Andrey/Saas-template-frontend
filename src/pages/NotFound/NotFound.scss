@@ -1,0 +1,48 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.notfound__icon {
+  font-size: 4rem;
+  margin-bottom: 1.2rem;
+}
+
+.notfound__title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+}
+
+.notfound__subtitle {
+  font-size: 1.15rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+.notfound__btn {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7em 2em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.2rem;
+  transition: background 0.15s;
+}
+.notfound__btn:hover {
+  background: #4338ca;
+}
+
+.notfound__autoredirect {
+  color: #94a3b8;
+  font-size: 0.98rem;
+} 
