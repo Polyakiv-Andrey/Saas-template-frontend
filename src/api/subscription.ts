@@ -50,5 +50,9 @@ export const subscriptionService = {
   cancelSubscription: async (subscriptionId: number): Promise<void> => {
     await api.delete(`/subscription/subscription/`);
   },
+  createBillingPortalSession: async () => {
+    const resp = await api.post<{ url: string }>('/payment/billing-portal/');
+    return resp.data;
+  },
 }; 
 

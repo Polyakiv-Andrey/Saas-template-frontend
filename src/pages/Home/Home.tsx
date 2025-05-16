@@ -6,6 +6,7 @@ import { SupportForm } from '../../components/features/SupportForm';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import './Home.scss';
+import BillingPortalButton from '../../components/features/BillingPortalButton/BillingPortalButton';
 
 export const Home: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
@@ -16,7 +17,8 @@ export const Home: React.FC = () => {
       <Header />
       <main className="home__main">
         <SubscriptionPlans />
-        {isAuthenticated && currentSubscription && <CurrentSubscriptionDashboard />}
+        {isAuthenticated && currentSubscription && currentSubscription.cancel_at_period_end === false && <CurrentSubscriptionDashboard />}
+        {isAuthenticated && currentSubscription && <BillingPortalButton/>}
         <SupportForm />
       </main>
     </div>

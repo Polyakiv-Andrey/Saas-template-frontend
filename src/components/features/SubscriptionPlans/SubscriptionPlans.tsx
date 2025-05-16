@@ -76,7 +76,7 @@ export const SubscriptionPlans: React.FC = () => {
                 </li>
               ))}
             </ul>
-            {currentSubscription && currentSubscription.plan ? (
+            {currentSubscription && currentSubscription.cancel_at_period_end === false && currentSubscription.plan ? (
               currentSubscription.plan.id !== plan.id ? (
                 <Button className="subscription-plans__button" onClick={() => handleSubscribe(plan)}>
                   Subscribe

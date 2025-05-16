@@ -15,12 +15,6 @@ export const CurrentSubscriptionDashboard: React.FC = () => {
     dispatch(fetchCurrentSubscription());
   }, [dispatch]);
 
-  const handleCancelSubscription = async () => {
-    if (currentSubscription) {
-      await dispatch(cancelSubscription(currentSubscription.id));
-    }
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -92,14 +86,6 @@ export const CurrentSubscriptionDashboard: React.FC = () => {
         </ul>
       </div>
 
-      <div className="current-subscription__actions">
-        <Button
-          className="current-subscription__button current-subscription__button--cancel"
-          onClick={handleCancelSubscription}
-        >
-          {currentSubscription.cancel_at_period_end ? 'Resume Subscription' : 'Cancel Subscription'}
-        </Button>
-      </div>
     </div>
   );
 }; 
