@@ -3,6 +3,7 @@ import { api } from './config';
 export interface SupportTicketPayload {
   title: string;
   description: string;
+  image?: File | null;
 }
 
 export interface SupportTicketResponse {
@@ -15,7 +16,19 @@ export interface SupportTicketResponse {
 
 export const supportApi = {
   createTicket: async (payload: SupportTicketPayload): Promise<SupportTicketResponse> => {
-    const { data } = await api.post<SupportTicketResponse>('/support/create_ticket/', payload);
+    const formData = new FormData();
+    formData.append('title', payload.title);
+    formData.append('description', payload.description);
+    if (payload.image) {
+      formData.append('image', payload.image);
+    }
+  
+    const { data } = await api.post<SupportTicketResponse>('/support/create_ticket/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return data;
   },
+  
 };

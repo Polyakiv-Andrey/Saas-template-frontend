@@ -76,3 +76,38 @@
   margin-bottom: 0.5rem;
   text-align: center;
 } 
+
+.support-form__file-input {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  color: #1e293b;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.support-form__file-input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+.support-form__file-label {
+  display: inline-block;
+  padding: 0.7em 1em;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #1e293b;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.support-form__file-label:hover,
+.support-form__file-label:focus {
+  border-color: #6366f1;
+  outline: none;
+}
