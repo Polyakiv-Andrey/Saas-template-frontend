@@ -15,11 +15,24 @@ export interface SupportTicketResponse {
   created_at: string;
   updated_at: string;
   resolved_at?: string | null;
-  reported_by_email: string
+  reported_by_email: string;
+}
+
+export interface SupportTicketListResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: SupportTicketResponse[];
 }
 
 export interface SupportTicketListParams {
-  interacted?: boolean; 
+  status?: boolean;
+  limit?: number;
+  offset?: number;
+}
+
+export interface SupportTicketStatus {
+  status: string;
 }
 
 export const supportApi = {
@@ -38,11 +51,20 @@ export const supportApi = {
     });
     return data;
   },
-  getTickets: async (params?: SupportTicketListParams): Promise<SupportTicketResponse[]> => {
-    const { data } = await api.get<SupportTicketResponse[]>('/support/tickets/', {
+  getTickets: async (params?: SupportTicketListParams): Promise<SupportTicketListResponse> => {
+    const { data } = await api.get<SupportTicketListResponse>('/support/tickets/', {
       params,
     });
     return data;
   },
-  
+  updateTicketStatus: async (
+    ticketId: number,
+    payload: SupportTicketStatus
+  ): Promise<SupportTicketStatus> => {
+    const { data } = await api.patch<SupportTicketStatus>(
+      `/support/tickets-status/${ticketId}/`,
+      payload
+    );
+    return data;
+  },
 };
