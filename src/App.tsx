@@ -12,6 +12,7 @@ import { Layout } from './components/layout/Layout';
 import { NotFound } from './pages/NotFound';
 import { fetchCurrentUser } from './store/slices/authSlice';
 import { PrivateRoute } from './components/routes/PrivateRoute';
+import { Account } from './pages/Account/Account';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,6 +36,14 @@ function App() {
             element={
               <PrivateRoute requireAdmin>
                 <Support />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/account" 
+            element={
+              <PrivateRoute>
+                <Account />
               </PrivateRoute>
             } 
           />

@@ -9,8 +9,68 @@
 
   &__logo {
     font-size: 1.5rem;
-    font-weight: bold;
-    color: #1f2937;
+    font-weight: 600;
+    color: #1e293b;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #6366f1;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    background: transparent;
+    color: #475569;
+
+    &:hover {
+      color: #1e293b;
+    }
+
+    &--primary {
+      background: #6366f1;
+      color: white;
+
+      &:hover {
+        background: #4f46e5;
+        color: white;
+      }
+    }
+  }
+
+  &__account-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    color: #475569;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+
+    &:hover {
+      color: #1e293b;
+      background: #f8fafc;
+    }
+  }
+
+  &__account-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
   }
 
   &__button-group {

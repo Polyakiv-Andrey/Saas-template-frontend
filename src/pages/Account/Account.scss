@@ -1,0 +1,138 @@
+.account {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+  }
+
+  &__status {
+    &-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: #f1f5f9;
+      color: #64748b;
+
+      &--active {
+        background: #dcfce7;
+        color: #166534;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &--subscription {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 1.25rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__value {
+    font-size: 1rem;
+    color: #1e293b;
+    font-weight: 500;
+  }
+
+  &__billing {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 0.875rem;
+
+    &--primary {
+      background: #6366f1;
+      color: white;
+
+      &:hover {
+        background: #4f46e5;
+      }
+    }
+
+    &--secondary {
+      background: #f1f5f9;
+      color: #475569;
+
+      &:hover {
+        background: #e2e8f0;
+      }
+    }
+  }
+} 
