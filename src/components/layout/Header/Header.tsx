@@ -63,6 +63,14 @@ export const Header: React.FC = () => {
       <div className="header__actions">
         {isAuthenticated ? (
           <>
+            <Link to="/support-form" className="header__support-link">
+              <svg className="header__support-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <path d="M12 8V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+              </svg>
+              Support
+            </Link>
             <Link to="/account" className="header__account-link">
               <svg className="header__account-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

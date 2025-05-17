@@ -77,4 +77,28 @@
     display: flex;
     gap: 1rem;
   }
+}
+
+.header__support-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  color: #3a3a3a;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: #f0f4ff;
+    color: #0056b3;
+  }
+}
+
+.header__support-icon {
+  display: inline-block;
+  vertical-align: middle;
+  color: #007bff;
 } 

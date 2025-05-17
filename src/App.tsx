@@ -13,6 +13,8 @@ import { NotFound } from './pages/NotFound';
 import { fetchCurrentUser } from './store/slices/authSlice';
 import { PrivateRoute } from './components/routes/PrivateRoute';
 import { Account } from './pages/Account/Account';
+import SupportFormPage from './pages/SupportForm';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,6 +49,15 @@ function App() {
               </PrivateRoute>
             } 
           />
+          <Route 
+            path="/support-form" 
+            element={
+              <PrivateRoute>
+                <SupportFormPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
