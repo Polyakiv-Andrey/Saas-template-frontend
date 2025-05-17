@@ -9,17 +9,17 @@ export const Footer: React.FC = () => {
         <div className="footer__section">
           <h3 className="footer__title">Company</h3>
           <ul className="footer__links">
-            <li><Link to="/">About Us</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/" onClick={() => setTimeout(() => window.scrollTo({top: 0, behavior: 'smooth'}), 0)}>About Us</Link></li>
+            <li><Link to="/contact" onClick={() => setTimeout(() => window.scrollTo({top: 0, behavior: 'smooth'}), 0)}>Contact</Link></li>
           </ul>
         </div>
 
         <div className="footer__section">
           <h3 className="footer__title">Support</h3>
           <ul className="footer__links">
-            <li><Link to="/support-form">Help Center</Link></li>
-            <li><Link to="/privacy">Privacy Policy</Link></li>
-            <li><Link to="/terms">Terms of Service</Link></li>
+            <li><Link to="/support-form" onClick={() => setTimeout(() => window.scrollTo({top: 0, behavior: 'smooth'}), 0)}>Help Center</Link></li>
+            <li><Link to="/privacy" onClick={() => setTimeout(() => window.scrollTo({top: 0, behavior: 'smooth'}), 0)}>Privacy Policy</Link></li>
+            <li><Link to="/terms" onClick={() => setTimeout(() => window.scrollTo({top: 0, behavior: 'smooth'}), 0)}>Terms of Service</Link></li>
           </ul>
         </div>
 

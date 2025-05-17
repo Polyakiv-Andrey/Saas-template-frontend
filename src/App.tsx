@@ -15,6 +15,7 @@ import { PrivateRoute } from './components/routes/PrivateRoute';
 import { Account } from './pages/Account/Account';
 import SupportFormPage from './pages/SupportForm';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -58,6 +59,7 @@ function App() {
             } 
           />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
