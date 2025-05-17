@@ -100,10 +100,14 @@
     margin-top: 1rem;
   }
 
-  &__actions {
+  &__form {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
+  }
+
+  &__input {
+    width: 100%;
   }
 
   &__btn {
@@ -117,11 +121,16 @@
     text-align: center;
     font-size: 0.875rem;
 
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     &--primary {
       background: #6366f1;
       color: white;
 
-      &:hover {
+      &:hover:not(:disabled) {
         background: #4f46e5;
       }
     }
@@ -130,7 +139,7 @@
       background: #f1f5f9;
       color: #475569;
 
-      &:hover {
+      &:hover:not(:disabled) {
         background: #e2e8f0;
       }
     }

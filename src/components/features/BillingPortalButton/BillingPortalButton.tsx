@@ -15,7 +15,7 @@ export const BillingPortalButton: React.FC = () => {
       window.location.href = url;  
     } catch (err) {
       console.error(err);
-      alert('Error');
+      alert('Choose a subscription from the list below');
     } finally {
       setLoading(false);
     }

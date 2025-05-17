@@ -5,6 +5,11 @@ interface RegisterData {
   password: string;
   password2: string;
 }
+interface ChangePasswordData {
+  old_password: string;
+  new_password: string;
+  new_password2: string;
+}
 interface CurrentUser {
   id: number;
   email: string;
@@ -99,4 +104,8 @@ export const authService = {
     const { data } = await api.get<CurrentUser>('/auth/users/me/');
     return data;
   },
+  changePassword: async (data: ChangePasswordData): Promise<{ message: string }> => {
+    const response = await api.patch<{ message: string }>('/auth/password/change/', data);
+    return response.data;
+  }
 }; 
